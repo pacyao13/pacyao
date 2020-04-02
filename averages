@@ -1,0 +1,115 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package averages;
+
+import java.util.Arrays;
+import java.util.Random;
+
+/**
+ * This class called Averages is a class that can: 1) create a list of random
+ * integers of desired length and max value 2) compute the arithmetic,
+ * geometric, and harmonic mean of that list
+ *
+ * @author pet00
+ */
+
+public class Averages {
+
+    /**
+     * This method called createData creates a list of random integers of
+     * desired length from 1 to a desired maximum value.
+     *
+     * @param maxVal
+     * @param listLength
+     * @return
+     */
+    
+    public static int[] createData(int maxVal, int listLength) {
+        int[] data;
+        data = new int[listLength];
+        for (int i = 0; i < listLength; i++) {
+            Random ran = new Random();
+            int n = ran.nextInt(maxVal) + 1;
+            data[i] = n;
+        }
+        return data;
+    }
+
+    /**
+     * This method below, arithmeticMean, requires a list of numbers.
+     * @param data It takes this list of numbers and returns a double in the
+     * form of the arithmetic mean of the list of numbers.
+     * @return
+     */
+    
+    public static double arithmeticMean(int[] data) {
+        int sum = 0;
+        for (int i = 0; i < data.length; i++) {
+            sum = sum + data[i];
+        }
+        return sum / data.length;
+    }
+
+    /**
+     * This method below, geometricMean, requires a list of numbers
+     *
+     * @param data It takes this list of numbers and returns a double in the
+     * form of the geometric mean of the list of numbers.
+     * @return
+     */
+    
+    public static float geometricMean(int[] data) {
+        float avg;
+        float sum = 1;
+        for (int i = 0; i < data.length; i++) {
+            sum = sum * data[i];
+        }
+        int n = data.length;
+        avg = (float) Math.pow(sum, (float) 1 / n);
+        return avg;
+    }
+
+    /**
+     * This method below, harmonicMean, requires a list of numbers
+     *
+     * @param data It takes this list of numbers and returns a double in the
+     * form of the harmonic mean of the list of numbers.
+     * @return
+     */
+    
+    public static float harmonicMean(int[] data) {
+        float avg;
+        float sum = 0;
+        int length = data.length;
+        for (int i = 0; i < data.length; i++) {
+            sum = sum + ((float) 1 / data[i]);
+        }
+        avg = length / sum;
+        return avg;
+    }
+
+    /**
+     * The main function here assigns the return value of each of the methods
+     * above to a variable, where that variable is printed in front of its
+     * corresponding string. The data is also printed first.
+     *
+     * @param args the command line arguments
+     */
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int[] data = Averages.createData(20, 10);
+        double arithmeticMean = Averages.arithmeticMean(data);
+        double geometricMean = Averages.geometricMean(data);
+        double harmonicMean = Averages.harmonicMean(data);
+        System.out.println("Numbers: " + Arrays.toString(data));
+        System.out.println("Arithmetic Mean: " + arithmeticMean);
+        System.out.println("Geometric Mean: " + geometricMean);
+        System.out.println("Harmonic Mean: " + harmonicMean);
+    }
+
+}
